@@ -74,9 +74,11 @@
   .seal{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;
     background:radial-gradient(circle at 35% 35%,#e0707f,#a3344a);display:flex;align-items:center;justify-content:center;
     color:#ffe6ea;font-size:22px;z-index:4;box-shadow:0 3px 8px rgba(0,0,0,.3);transition:opacity .4s}
-  .envelope.open .env-flap{transform:rotateX(180deg);z-index:0}
+  .envelope.open .env-flap{transform:scaleY(-1);z-index:0}
   .envelope.open .seal{opacity:0}
   .envelope.open .env-letter{transform:translateY(-55%)}
+  .intro-title,.tap{transition:opacity .6s ease}
+  #intro.opening .intro-title,#intro.opening .tap{opacity:0}
   .tap{color:#f6d9e0;font-size:1rem;letter-spacing:.2em;text-transform:uppercase;opacity:.85;animation:blink 2.2s ease-in-out infinite}
   @keyframes blink{50%{opacity:.35}}
 
@@ -243,7 +245,7 @@ const env=document.getElementById('envelope'),intro=document.getElementById('int
       carta=document.getElementById('carta'),cue=document.getElementById('cue');
 function openLetter(){
   if(env.classList.contains('open'))return;
-  env.classList.add('open');
+  env.classList.add('open');intro.classList.add('opening');
   for(let i=0;i<18;i++)setTimeout(petal,i*60);
   setTimeout(()=>{
     intro.classList.add('hide');carta.classList.add('show');window.scrollTo(0,0);
